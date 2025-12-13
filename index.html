@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFest Beirut 2025 - RSVP Confirmation</title>
+    <style>
+        /* Google Font: Google Sans (or similar) */
+        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #202124;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem;
+            /* Added margin for mobile spacing */
+        }
+
+        /* Responsive padding for mobile */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 1.5rem;
+            max-width: 150px;
+        }
+
+        /* Form Title */
+        h1 {
+            color: #1a73e8;
+            /* Google Blue */
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            /* Adjusted for Google Sans */
+            color: #5f6368;
+        }
+
+        .label-note {
+            display: block;
+            font-size: 0.85em;
+            color: #70757a;
+            margin-top: 0.2rem;
+            font-weight: 400;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: #202124;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+        }
+
+        /* Style for readonly inputs */
+        input[readonly] {
+            background-color: #e9ecef;
+            /* A slightly grayer background */
+            cursor: not-allowed;
+            color: #6c757d;
+        }
+
+        /* Radio Button Group */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 0.75rem;
+            accent-color: #1a73e8;
+            width: 1.1em;
+            height: 1.1em;
+        }
+
+        /* Time Slots - Indented options */
+        #workshop-times {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid #e0e0e0;
+        }
+
+        .submit-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 24px;
+            /* Pill shape */
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:disabled {
+            background-color: #d2e3fc;
+            cursor: not-allowed;
+        }
+
+        .submit-btn:not(:disabled):hover {
+            background-color: #1765cc;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Loading, Error, and Submission Status States */
+        .loading-state,
+        .error-state,
+        #submission-status {
+            padding: 2rem 0;
+            color: #5f6368;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .error-state,
+        #submission-status.error {
+            color: #d93025;
+            /* Google Red */
+        }
+
+        #submission-status.success {
+            color: #1e8e3e;
+            /* Google Green */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDggMTA4IiBmaWxsPSJub25lIj48cGF0aCBkPSJNNTQgMEwwIDI3VjgxTDU0IDEwOEwxMDggODFWMjdMNTQgMFoiIGZpbGw9IiNFOEYwRkUiLz48cGF0aCBkPSJNNTQgMTA4TDEwOCA4MVYyN0w1NCAwTDAgMjdWODFMNTQgMTA4WiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyXzFfMikiLz48cGF0aCBkPSJNNTQgMTA4TDAgODFWMjdMNTQgMFYxMDhaIiBmaWxsPSJ1cmwoI3BhaW50MV9saW5lYXJfMV8yKSIvPjxwYXRoIGQ9Ik0yMi45IDQwLjVMNTQgNTguNUw4NS41IDQwLjVMNTQgMjIuNUwyMi45IDQwLjVaIiBmaWxsPSIjNDI4NUY0Ii8+PHBhdGggZD0iTTU0IDU4LjVWODUuNUw4NS41IDY3LjVWNDAuNUw1NCA1OC41WiIgZmlsbD0iIzFBNzNFOCIvPjxwYXRoIGQ9Ik0yMi45IDQwLjVWNjcuNUw1NCA4NS41VjU4LjVMMjIuOSA0MC41WiIgZmlsbD0iIzFBNzNFOCIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8xXzIiIHgxPSI1NCIgeTE9IjAiIHgyPSI1NCIgeTI9IjEwOCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNFOEYwRkUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEMkUzRkMiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQxX2xpbmVhcl8xXzIiIHgxPSI1NCIgeTE9IjAiIHgyPSI1NCIgeTI9IjEwOCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNEMkUzRkMiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNDMkQ4RjkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4="
+            alt="DevFest Logo" class="logo">
+        <h1>DevFest Beirut 2025</h1>
+
+        <div id="loading-state" class="loading-state">
+            <p>Loading your information, please wait...</p>
+        </div>
+
+        <div id="error-state" class="error-state" style="display: none;">
+            <p>Could not load your information. Please check the ID in the URL and try again.</p>
+        </div>
+
+        <form id="registration-form" method="post" style="display: none;">
+            <!-- Field: Familiarity with Google Developer Tools -->
+            <div class="form-group">
+                <label for="familiarity_level">How familiar are you at least one of Google Developer
+                    Technologies?</label>
+                <select id="familiarity_level" name="familiarity_level" required>
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+            <!-- Education / Organization Field (Read-only) -->
+            <div class="form-group" id="follow-up-question">
+                <label for="education_input">Education / Organization</label>
+                <small class="label-note">If you wish to change this text in the badge please send us email on
+                    info@gdglebanon.com</small>
+                <input type="text" id="education_input" name="education_input"
+                    placeholder="e.g., Lebanese American University" readonly>
+            </div>
+
+            <button type="submit" class="submit-btn" disabled>Submit Application</button>
+        </form>
+        <div id="submission-status"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingState = document.getElementById('loading-state');
+            const errorState = document.getElementById('error-state');
+            const registrationForm = document.getElementById('registration-form');
+            const submitButton = registrationForm.querySelector('.submit-btn');
+            const submissionStatus = document.getElementById('submission-status');
+            const selectElement = document.getElementById('familiarity_level');
+
+            let fetchedUserData = null;
+
+            // --- Data Transformation Logic ---
+
+            /**
+             * Transforms event registration JSON to survey entry format
+             */
+            function transformToSurveyEntry(response, ticketId, surveyId = 322662) {
+                if (!response || !response.data) throw new Error('Invalid response format');
+                const data = response.data;
+                const referenceMap = { 'social_media': 'Social media', 'gdg_website': 'Notified by this community', 'friends': 'Recommended by a friend or peer', 'university': 'Recommended by a friend or peer', 'partner': 'Recommended by a friend or peer', 'other_events': 'Other', 'other': 'Other' };
+                const experienceHierarchy = { 'bootcamp': 0, 'student': 0, 'undergrad_student': 0, 'post_grad': 0, 'grad_student': 0, 'fresh_grad': 0, 'intern': 1, '0-1': 1, '1-2': 1, '3-5': 2, 'freelancer': 2, 'manager_teamlead': 2, 'cto_ceo': 2, '5-7': 3 };
+                const experienceMap = { '0-1': '1 -2 year', '1-2': '1 -2 year', 'intern': '1 -2 year', '3-5': '3-5 years', '5-7': '6-10 years', 'freelancer': '3-5 years', 'manager_teamlead': '3-5 years', 'cto_ceo': '3-5 years', 'bootcamp': 'No experience / Not a developer', 'student': 'No experience / Not a developer', 'undergrad_student': 'No experience / Not a developer', 'post_grad': 'No experience / Not a developer', 'grad_student': 'No experience / Not a developer', 'fresh_grad': 'No experience / Not a developer' };
+                let experienceValues = [];
+                if (Array.isArray(data.experience)) experienceValues = data.experience;
+                else if (typeof data.experience === 'string') experienceValues = data.experience.split(',').map(v => v.trim()).filter(Boolean);
+                else if (data.experience) experienceValues = [data.experience];
+                let highestExperienceValue = null, highestLevel = -1;
+                experienceValues.forEach(exp => { const level = experienceHierarchy[exp]; if (level !== undefined && level > highestLevel) { highestLevel = level; highestExperienceValue = exp; } });
+
+
+                let field1630217 = 'No experience / Not a developer'; // Default
+                if (highestExperienceValue) { field1630217 = experienceMap[highestExperienceValue] || field1630217; }
+                const field1630216 = referenceMap[data.reference] || 'Other';
+
+                return {
+                    ticket: ticketId,
+                    first_name: data.firstName || '',
+                    last_name: data.lastName || '',
+                    email: data.email || '',
+                    company: data.company || '',
+                    event_survey_entry: {
+                        survey: surveyId,
+                        fields: {
+                            '1630215': null,
+                            '1630216': field1630216,
+                            '1630217': field1630217,
+                            '1630218': '1 - Novice',
+                            '1630219': '',
+                            '1630220': null
+                        }
+                    },
+                    signup_consent: true
+                };
+            }
+
+            /**
+             * Populates the select dropdown with options.
+             */
+            function populateSelectWithOptions(options) {
+                selectElement.innerHTML = '';
+                // Add a default disabled option if needed
+                const defaultOption = document.createElement('option');
+                defaultOption.value = "";
+                defaultOption.textContent = "Select an option";
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                selectElement.appendChild(defaultOption);
+
+                options.forEach(choice => {
+                    const option = document.createElement('option');
+                    // Check if choices are objects or strings
+                    if (typeof choice === 'object') {
+                        option.value = choice.value || choice.label; // Fallback
+                        option.textContent = choice.label || choice.value;
+                    } else {
+                        option.value = choice;
+                        option.textContent = choice;
+                    }
+                    selectElement.appendChild(option);
+                });
+            }
+
+            /**
+             * Fetches user data and populates the form.
+             */
+            const fetchAndPopulateForm = async () => {
+                try {
+                    // Extract ID from URL query parameters
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const id = urlParams.get('id');
+
+                    if (!id) {
+                        throw new Error("No user ID provided in the URL.");
+                    }
+                    const apiUrl = `https://script.google.com/macros/s/AKfycbyQTpa0wXqC3fqoU6A6LvOqJov2SqI7Lj40exnD4yxZZkB_qW-ttPPXy1bfn1l1mCPf/exec?id=${id}`;
+
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error(`API request failed with status: ${response.status}`);
+
+                    const responseText = await response.text();
+                    let responseData;
+                    try { responseData = JSON.parse(responseText); } catch (e) { console.error("Failed to parse API response as JSON:", responseText); throw new Error("API did not return valid JSON."); }
+
+                    const payload = responseData && responseData.status === 'success' ? responseData.data : null;
+                    if (!payload) throw new Error("Received invalid data structure from the API.");
+
+                    // --- Acceptance Logic Check ---
+
+                    // Define the cutoff date: October 25, 2025, at 00:00:00
+                    // Note: Month is 0-indexed, so 9 is October.
+                    const cutoffDate = new Date(2025, 9, 25, 0, 0, 0);
+
+                    // Convert the payload's string timestamp (e.g., "10/25/2025") into a Date object.
+                    // This is necessary for a correct comparison.
+                    const payloadDate = new Date(payload.timestamp);
+
+                    // Your rule: Allow if (company is LAU) OR (timestamp is BEFORE Oct 25)
+                    //
+                    // Therefore, the ERROR case is the exact opposite:
+                    // 1. company is NOT LAU (!==)
+                    // AND
+                    // 2. payloadDate is ON or AFTER the cutoffDate (>=)
+                    //
+                    // if (payload.company !== 'Lebanese American University' && payloadDate <= cutoffDate) {
+                    //     // This error triggers for non-LAU submissions on or before Oct 25, 2025.
+                    //     throw new Error("RSVP Confirmation closed. Submissions are only accepted from Lebanese American University or if timestamped before October 25, 2025.");
+                    // }
+
+                    // If the code reaches here, the submission is valid.
+                    // (It's either from LAU, or it was submitted before Oct 25th).
+                    // ... you can continue with the rest of your logic ...
+
+                    fetchedUserData = payload; // Store the fetched user data
+
+                    if (Array.isArray(payload.choices)) {
+                        populateSelectWithOptions(payload.choices);
+                    } else if (payload.id) {
+                        const staticChoices = ["1 - Novice", "2 - Fundamental", "3 - Intermediate", "4 - Advanced", "5 - Expert"];
+                        populateSelectWithOptions(staticChoices);
+                        if (payload.experience === '5-7') selectElement.value = '5_expert';
+                        document.getElementById('education_input').value = payload.company || '';
+                    } else {
+                        throw new Error("Received data is not in a recognized format.");
+                    }
+
+                    // Show the form
+                    loadingState.style.display = 'none';
+                    registrationForm.style.display = 'block';
+                    // The "follow-up-question" div is now visible.
+                    submitButton.disabled = false;
+
+                } catch (error) {
+                    console.error("Error fetching or populating form:", error);
+                    loadingState.style.display = 'none';
+                    errorState.style.display = 'block';
+                    errorState.querySelector('p').textContent = error.message;
+                }
+            };
+
+            // Event listener for form submission
+            registrationForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                if (!fetchedUserData) {
+                    submissionStatus.textContent = "Error: Original user data not loaded.";
+                    submissionStatus.className = 'error';
+                    return;
+                }
+
+                submitButton.disabled = true;
+                submissionStatus.textContent = "Submitting...";
+                submissionStatus.className = '';
+
+                try {
+                    const responseData = { status: "success", data: fetchedUserData };
+                    const ticketId = 58731; // Updated ticket ID
+
+                    let postPayload = transformToSurveyEntry(responseData, ticketId);
+
+                    // Update payload with form answers
+                    const familiaritySelect = document.getElementById('familiarity_level');
+                    const educationInput = document.getElementById('education_input');
+                    postPayload.event_survey_entry.fields['1630218'] = familiaritySelect.options[familiaritySelect.selectedIndex].text;
+                    postPayload.event_survey_entry.fields['1630219'] = educationInput.value;
+                    postPayload.company = educationInput.value;
+
+                    const submissionApiUrl = 'https://gdg.community.dev/api/event/107572/waitlist/list/';
+
+                    const postResponse = await fetch(submissionApiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(postPayload)
+                    });
+
+                    if (!postResponse.ok) {
+                        const errorText = await postResponse.text();
+                        // Directly check the raw text for the specific error message.
+                        if (postResponse.status === 400 && errorText.includes("already on the waitlist")) {
+                            // Instead of showing a success page, show an error message on the form.
+                            submissionStatus.textContent = "This email is already in the list. No further action is required. Your OTP to contact support on Email info@gdglebanon.com is " + `${fetchedUserData.OTP}` + ".";
+                            submissionStatus.className = 'error'; // Use the existing error class for styling.
+                            submitButton.textContent = 'Already on list'; // Update button text.
+                            // Keep the button disabled and the form visible.
+                        } else {
+                            // For all other errors, throw a generic error to be caught below.
+                            throw new Error(`Submission failed: ${postResponse.status} ${errorText}`);
+                        }
+                    } else {
+                        submissionStatus.innerHTML = `
+                            <div style="text-align: center;">
+                                <p style="font-size: 2.5em; margin-bottom: 1rem;">✅</p>
+                                <p style="font-weight: bold; font-size: 1.2em;">You are now confirmed to attend DevFest!</p>
+                                <p>You will receive an email with your QR Code link shortly.</p>
+                                
+                                <div style="margin-top: 1.5rem; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background-color: #f8f9fa;">
+                                    <p style="font-size: 1.1em; font-weight: bold; margin-bottom: 0.5rem;">Your Confirmation Code (OTP):</p>
+                                    <p style="font-size: 1.5em; font-weight: 700; color: #1a73e8; letter-spacing: 2px;">${fetchedUserData.OTP}</p>
+                                    <p style="font-size: 0.9em; margin-top: 0.5rem;">Please save this code for your reference.</p>
+                                </div>
+
+                                <div style="margin-top: 1.5rem; text-align: left; font-size: 0.9em; color: #5f6368;">
+                                    <p>If you do not receive the confirmation email within the next few hours, don't worry you are already confirmed and you can checkin by giving your name , if you have doubt send email to info@gdglebanon.com</p>
+                                    <p style="margin-top: 1rem;">
+                                        <strong>Please note:</strong> The ticket is not transferable. In case of no-show, you might be restricted from attending future events. Please keep an eye on any communication emails from us.
+                                    </p>
+                                    <p>See you on Saturday at LAU, Beirut Campus!</p>
+                                </div>
+                            </div>
+                        `;
+                        submissionStatus.className = 'success';
+                        registrationForm.style.display = 'none';
+                    }
+
+                } catch (error) {
+                    console.error("Submission error:", error);
+                    submissionStatus.textContent = `Submission failed. ${error.message}`;
+                    submissionStatus.className = 'error';
+                    submitButton.disabled = false;
+                }
+            });
+
+            fetchAndPopulateForm();
+        });
+    </script>
+
+</body>
+
+</html>
