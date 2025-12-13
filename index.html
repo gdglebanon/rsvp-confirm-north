@@ -434,13 +434,13 @@
                         submissionStatus.innerHTML = `
                             <div style="text-align: center;">
                                 <p style="font-size: 2.5em; margin-bottom: 1rem;">✅</p>
-                                <p style="font-weight: bold; font-size: 1.2em;">You are now confirmed to attend DevFest!</p>
+                                <p style="font-weight: bold; font-size: 1.2em;">${fetchedUserData.firstName} ${fetchedUserData.lastName} you are now confirmed to attend DevFest!</p>
                                 <p>You will receive an email with your QR Code link shortly.</p>
                                 
                                 <div style="margin-top: 1.5rem; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; background-color: #f8f9fa;">
                                     <p style="font-size: 1.1em; font-weight: bold; margin-bottom: 0.5rem;">Your Confirmation Code (OTP):</p>
                                     <p style="font-size: 1.5em; font-weight: 700; color: #1a73e8; letter-spacing: 2px;">${fetchedUserData.OTP}</p>
-                                    <p style="font-size: 0.9em; margin-top: 0.5rem;">Please save this code for your reference.</p>
+                                    <p style="font-size: 0.9em; margin-top: 0.5rem;">Please take a screenshot for your reference.</p>
                                 </div>
 
                                 <div style="margin-top: 1.5rem; text-align: left; font-size: 0.9em; color: #5f6368;">
