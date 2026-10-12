@@ -356,7 +356,7 @@
                     if (!postResponse.ok) {
                         const errorText = await postResponse.text();
                         if (postResponse.status === 400 && errorText.includes("already on the waitlist")) {
-                            submissionStatus.textContent = "This email is already in the list. No further action is required. Your OTP to contact support on Email info@gdglebanon.com is " + `${fetchedUserData.OTP || 'N/A'}` + ".";
+                            submissionStatus.textContent = "This email is already in the list. No further action is required.";
                             submissionStatus.className = 'error';
                             submitButton.textContent = 'Already on list';
                         } else {
